@@ -5,10 +5,11 @@ description = ""
 authors = ["savilard <vitaliyantonoff@gmail.com>"]
 
 [tool.poetry.dependencies]
-python = "^3.8"
+python = "^3.9"
 Django = "^3.2.7"
-environs = "^9.3.3"
 django-phonenumber-field = "^5.2.0"
+environs = "^9.3.3"
+dj-database-url = "^0.5.0"
 
 [tool.poetry.dev-dependencies]
 django-debug-toolbar = "^3.2.2"
