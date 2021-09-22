@@ -31,3 +31,26 @@ class Product(models.Model):
 
     def __str__(self):
         return self.title
+
+
+class ProductImage(models.Model):
+    position = models.PositiveIntegerField(default=0, db_index=True)
+    image = models.ImageField(upload_to='images')
+    product = models.ForeignKey(
+        Product,
+        related_name='images',
+        on_delete=models.CASCADE,
+    )
+
+    class Meta:
+        ordering = ['position']
+        verbose_name = 'изображение'
+        verbose_name_plural = 'изображения'
+
+    def __str__(self):
+        return f'{self.position} {self.product.title}'
+
+    @property
+    def get_absolute_image_url(self):
+        """Get the full path to the image."""
+        return f'{self.image.url}'
