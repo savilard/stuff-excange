@@ -20,6 +20,7 @@ class Product(models.Model):
         ProductCategory,
         verbose_name='Категория',
         related_name='products',
+        null=True,
         on_delete=models.SET_NULL,
     )
     created_at = models.DateTimeField('Дата регистрации', default=timezone.now, db_index=True)
