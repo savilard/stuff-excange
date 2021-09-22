@@ -8,6 +8,7 @@ authors = ["savilard <vitaliyantonoff@gmail.com>"]
 python = "^3.8"
 Django = "^3.2.7"
 environs = "^9.3.3"
+django-phonenumber-field = "^5.2.0"
 
 [tool.poetry.dev-dependencies]
 django-debug-toolbar = "^3.2.2"
