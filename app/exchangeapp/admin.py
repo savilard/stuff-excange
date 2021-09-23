@@ -1,7 +1,6 @@
 from django.contrib import admin, messages
-from django.contrib.admin.decorators import action
-from django.utils.translation import ngettext
 from django.utils.html import format_html
+from django.utils.translation import ngettext
 
 from .models import Product
 from .models import ProductCategory
