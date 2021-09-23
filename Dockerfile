@@ -23,12 +23,14 @@ RUN apt-get update && apt-get upgrade -y \
     && apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false \
     && apt-get clean -y && rm -rf /var/lib/apt/lists/*
 
-WORKDIR /app
+WORKDIR /usr/src/app
 
 COPY ./pyproject.toml .
 
 RUN poetry install
 
-COPY ./app ./app
+COPY ./app .
 
-CMD gunicorn stuff_exchange.wsgi:application --bind 0.0.0.0:5000
+RUN python manage.py collectstatic --noinput
+
+CMD gunicorn stuff_exchange.wsgi:application --bind 0.0.0.0:$PORT
