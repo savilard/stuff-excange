@@ -16,7 +16,7 @@ class ProductImageInline(admin.TabularInline):
     def get_preview_image(self, instance):
         return format_html(
             '<img style="max-width: 200px;" src="{}"/>',
-            instance.image.url
+            instance.image.url,
         )
 
 
