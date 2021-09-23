@@ -132,3 +132,4 @@ dmypy.json
 .vscode/
 poetry.lock
 .env.*
+app/media
