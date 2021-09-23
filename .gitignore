@@ -133,3 +133,4 @@ dmypy.json
 poetry.lock
 .env.*
 app/media
+app/staticfiles
