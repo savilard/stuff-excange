@@ -1,7 +1,6 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<!-- Paginated info -->
 <div class="container mt-3">
   <h6>Найдено amount вещей из {{ products_amount }} вещей</h6>
 </div>
@@ -9,7 +8,6 @@
   <h3>Все товары</h3>
 </div>
 
-<!-- Items -->
 {% if page_object %}
 <div class="row row-cols-md-3 g-4 px-4 mt-3">
   {% for product in page_object %}
