@@ -22,7 +22,6 @@ But, not for nothing, but to get something he needs in return. This project will
 
 ## Installation
 
-* Install [Poetry](https://python-poetry.org/) and make;
 * Clone github repository:
 ```bash
 git clone https://github.com/savilard/stuff-excange
@@ -31,9 +30,14 @@ git clone https://github.com/savilard/stuff-excange
 ```bash
 cd stuff-excange
 ```
-* Install dependencies:
+* Prepare virtual environment:
 ```bash
-make install
+python -m venv .venv
+source .venv/bin/activate
+```
+* install deps:
+```bash
+pip install -r requirements.txt
 ```
 * Create a .env file with the following content:
 ```.env
