@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="container mt-3">
+  <h6>Найдено amount вещей из {{ products_amount }} вещей</h6>
+</div>
+<div class="container mt-5">
+  <h3>Все товары</h3>
+</div>
+
+{% if page_object %}
+<div class="row row-cols-md-3 g-4 px-4 mt-3">
+  {% for product in page_object %}
+  <div class="col">
+    <div class="card h-100">
+      <img src="{{ product.images.all.0.image.url }}" class="card-img-top" alt="{{ product.title }}">
+      <div class="card-body">
+        <h5 class="card-title">{{ product.title }}</h5>
+        <p class="card-text">
+          <a href="#" target="_blank" class="card-link">
+            User nickname
+          </a>
+        </p>
+      </div>
+      <div class="card-footer">
+        <small class="text-muted">Загружено: {{ product.created_at }} </small>
+      </div>
+    </div>
+  </div>
+  {% endfor products %}
+</div>
+{% else %}
+  <h6>Вещей на обмен пока что нет.</h6>
+{% endif %}
+
+<div>
+  {% include 'pagination.html'%}
+</div>
+
+{% endblock %}
