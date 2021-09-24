@@ -27,6 +27,7 @@ class Product(models.Model):
     published = models.BooleanField('Опубликован', default=True, db_index=True)
 
     class Meta:
+        ordering = ['-created_at']
         verbose_name = 'товар'
         verbose_name_plural = 'товары'
 

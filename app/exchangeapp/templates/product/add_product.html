@@ -1,0 +1,110 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="container">
+  <div class="row mt-5">
+    <div class="col col-6">
+      <h3>Заголовок</h3>
+      <div class="input-group mb-2">
+        <input type="text" class="form-control" placeholder="Например, iPhone 13" aria-label="Add-product-name"
+               aria-describedby="basic-addon1">
+      </div>
+      <p class="text-muted">
+        Осталось 30 символов.
+      </p>
+    </div>
+  </div>
+  <div class="row my-5">
+    <div class="col col-6">
+      <h3>Категория</h3>
+      <select class="list-group">
+        <option class="list-group-item active">Выберите категорию</option>
+        <option class="list-group-item">Item 3</option>
+        <option class="list-group-item">Item 4</option>
+        <option class="list-group-item">Item 5</option>
+      </select>
+    </div>
+  </div>
+  <div class="row my-5">
+    <div class="col col-6">
+      <h3>Описание</h3>
+      <div class="input-group">
+        <textarea class="form-control" placeholder="Расскажите об особенностях товара"
+                  aria-label="With textarea">
+        </textarea>
+      </div>
+    </div>
+  </div>
+  <div class="row my-5">
+    <div class="col col-6 bg-light">
+      <h3>Фотографии</h3>
+      <div class="input-group mb-3">
+        <label class="input-group-text" for="inputGroupFile01">Загрузить файл</label>
+        <input type="file" class="form-control" id="inputGroupFile01">
+      </div>
+      <p class="text-muted">
+        С фотографиями вы получите больше откликов.
+      </p>
+    </div>
+    <div class="col col-6">
+      Тут будут советы
+    </div>
+  </div>
+  <div class="row my-5">
+    <div class="col col-6">
+      <h3>Что хочу взамен</h3>
+      <div class="input-group mb-2">
+        <input type="text" class="form-control" placeholder="Например, iPhone 13" aria-label="Add-product-name"
+               aria-describedby="basic-addon1">
+      </div>
+    </div>
+  </div>
+  <div class="row my-5">
+    <div class="col col-6">
+      <h3>Контактная информация</h3>
+    </div>
+    <div class="row mt-3">
+      <div class="col col-6">
+        <p class="text-muted">Город</p>
+        <div class="input-group mb-2">
+          <input type="text" class="form-control" placeholder="Алматы" aria-label="Add-product-name"
+                 aria-describedby="basic-addon1">
+        </div>
+      </div>
+    </div>
+    <div class="row mt-3">
+      <div class="col col-6 my-3">
+        <p class="text-muted">Телефон (обязательно)</p>
+        <div class="input-group">
+          <input type="text" class="form-control" placeholder="+7 (___) ___ - __ - __" aria-label="Add-product-name"
+                 aria-describedby="basic-addon1">
+        </div>
+      </div>
+      <div class="col col-6 my-3">
+        <p class="text-muted">Электронная почта</p>
+        <div class="input-group">
+          <input type="text" class="form-control" aria-label="Add-product-name" aria-describedby="basic-addon1">
+        </div>
+      </div>
+    </div>
+    <div class="row mt-3">
+      <div class="col col-6 my-3">
+        <p class="text-muted">Ссылка на профиль Telegram</p>
+        <div class="input-group">
+          <input type="text" class="form-control" aria-label="Add-product-name" aria-describedby="basic-addon1">
+        </div>
+      </div>
+      <div class="col col-6 my-3">
+        <p class="text-muted">Ссылка на профиль VK</p>
+        <div class="input-group">
+          <input type="text" class="form-control" aria-label="Add-product-name" aria-describedby="basic-addon1">
+        </div>
+      </div>
+    </div>
+    <div class="row mt-3">
+      <button type="button" class="btn btn-success">Выложить товар</button>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
