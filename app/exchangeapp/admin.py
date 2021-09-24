@@ -1,10 +1,20 @@
 from django.contrib import admin, messages
-from django.utils.html import format_html
+from django.contrib.admin.decorators import action
 from django.utils.translation import ngettext
+from django.utils.html import format_html
+
+from import_export import resources
+from import_export.admin import ImportExportActionModelAdmin
 
 from .models import Product
 from .models import ProductCategory
 from .models import ProductImage
+
+
+class ProductResource(resources.ModelResource):
+    class Meta:
+        model = Product
+        fields = ('id', 'title', 'category__title', 'created_at')
 
 
 class ProductImageInline(admin.TabularInline):
@@ -25,9 +35,9 @@ class ProductCategoryAdmin(admin.ModelAdmin):
         'title',
     ]
 
+class ProductAdmin(ImportExportActionModelAdmin, admin.ModelAdmin):
+    resource_class = ProductResource
 
-@admin.register(Product)
-class ProductAdmin(admin.ModelAdmin):
     inlines = [
         ProductImageInline,
     ]
@@ -63,3 +73,5 @@ class ProductAdmin(admin.ModelAdmin):
                 '%d товара были успешно отмечены как неопубликованные.',
                 updated,
             ) % updated, messages.SUCCESS)
+
+admin.site.register(Product, ProductAdmin)
