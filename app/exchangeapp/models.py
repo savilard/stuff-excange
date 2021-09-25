@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 from django.utils import timezone
 from django.utils.crypto import get_random_string
 from django.utils.text import slugify
@@ -42,6 +43,9 @@ class Product(models.Model):
         if not self.slug:
             self.slug = slugify(f'{self.title} {get_random_string(5)}')
         return super().save(*args, **kwargs)
+
+    def get_absolute_url(self):
+        return reverse('product-detail', args=[str(self.slug)])
 
 
 class ProductImage(models.Model):
