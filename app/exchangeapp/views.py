@@ -1,6 +1,6 @@
 from django.core.paginator import Paginator
 from django.shortcuts import render
-from django.views.generic import CreateView
+from django.views.generic import CreateView, DetailView
 
 from .forms import ProductForm, ProductImageFormSet
 from .models import Product
@@ -31,6 +31,11 @@ class ProductAddView(CreateView):
         else:
             return self.form_invalid(form)
         return super(ProductAddView, self).form_valid(form)
+
+
+class ProductDetailView(DetailView):
+    model = Product
+    template_name = 'product/product_details.html'
 
 
 def all_products(request):
