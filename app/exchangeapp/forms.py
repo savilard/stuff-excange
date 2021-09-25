@@ -8,9 +8,10 @@ from .models import Product, ProductImage
 class ProductForm(forms.ModelForm):
     class Meta:
         model = Product
-        fields = ('title', 'category', 'slug', 'description')
+        fields = ('title', 'category', 'slug', 'description', 'exchange_offer')
         widgets = {
             'title': forms.TextInput(attrs={'placeholder': 'Например, IPhone 13'}),
+            'exchange_offer': forms.TextInput(attrs={'placeholder': 'Например, IPhone 13'}),
             'description': forms.Textarea(attrs={'placeholder': 'Расскажите об особенностях своего товара'}),
         }
 
