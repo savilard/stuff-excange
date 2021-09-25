@@ -8,9 +8,10 @@ from .models import Product, ProductImage
 class ProductForm(forms.ModelForm):
     class Meta:
         model = Product
-        fields = ('title', 'category', 'slug')
+        fields = ('title', 'category', 'slug', 'description')
         widgets = {
             'title': forms.TextInput(attrs={'placeholder': 'Например, IPhone 13'}),
+            'description': forms.Textarea(attrs={'placeholder': 'Расскажите об особенностях своего товара'}),
         }
 
         def __init__(self, *args, **kwargs):
@@ -20,6 +21,7 @@ class ProductForm(forms.ModelForm):
             self.helper.disable_csrf = True
             self.helper.layout = Layout(
                 'title',
+                'description',
             )
 
 

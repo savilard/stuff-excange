@@ -16,6 +16,7 @@ class ProductCategory(models.Model):
 class Product(models.Model):
     title = models.CharField(verbose_name='Название', max_length=50, db_index=True)
     slug = models.SlugField(verbose_name='Product slug', max_length=100, unique=True)
+    description = models.TextField(verbose_name='Описание', max_length=500)
     category = models.ForeignKey(
         ProductCategory,
         verbose_name='Категория',
