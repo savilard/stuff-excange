@@ -1,5 +1,7 @@
 from django.db import models
 from django.utils import timezone
+from django.utils.crypto import get_random_string
+from django.utils.text import slugify
 
 
 class ProductCategory(models.Model):
@@ -35,6 +37,11 @@ class Product(models.Model):
 
     def __str__(self):
         return self.title
+
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = slugify(f'{self.title} {get_random_string(5)}')
+        return super().save(*args, **kwargs)
 
 
 class ProductImage(models.Model):
