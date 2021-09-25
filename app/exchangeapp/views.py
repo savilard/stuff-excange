@@ -1,13 +1,36 @@
 from django.core.paginator import Paginator
 from django.shortcuts import render
+from django.views.generic import CreateView
 
+from .forms import ProductForm, ProductImageFormSet
 from .models import Product
 
 ITEMS_PER_PAGE = 9
 
 
-def add_product(request):
-    return render(request, 'product/add_product.html')
+class ProductAddView(CreateView):
+    model = Product
+    form_class = ProductForm
+    template_name = 'product/add_product.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(ProductAddView, self).get_context_data(**kwargs)
+        if self.request.POST:
+            context['images'] = ProductImageFormSet(self.request.POST, self.request.FILES)
+        else:
+            context['images'] = ProductImageFormSet()
+        return context
+
+    def form_valid(self, form):
+        context = self.get_context_data()
+        images = context['images']
+        if images.is_valid():
+            self.object = form.save()
+            images.instance = self.object
+            images.save()
+        else:
+            return self.form_invalid(form)
+        return super(ProductAddView, self).form_valid(form)
 
 
 def all_products(request):
