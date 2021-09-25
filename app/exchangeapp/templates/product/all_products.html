@@ -1,8 +1,7 @@
 {% extends 'base.html' %}
 {% block content %}
-
 <div class="container mt-3">
-  <h6>Найдено amount вещей из {{ products_amount }} вещей</h6>
+  <h6>Найдено {{ products_amount }} вещей</h6>
 </div>
 <div class="container mt-5">
   <h3>Все товары</h3>
@@ -13,7 +12,7 @@
   {% for product in page_object %}
   <div class="col">
     <div class="card h-100">
-      <img src="{{ product.images.all.0.image.url }}" class="card-img-top" alt="{{ product.title }}">
+      <img src="{{ product.images.all.0.image.url }}" class="card-img-top" width="auto" height="400" style="object-fit: cover;" alt="{{ product.title }}">
       <div class="card-body">
         <h5 class="card-title">{{ product.title }}</h5>
         <p class="card-text">
