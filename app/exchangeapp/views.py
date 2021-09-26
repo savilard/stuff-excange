@@ -1,5 +1,3 @@
-from django.core.paginator import Paginator
-from django.shortcuts import render
 from django.views.generic import CreateView, DetailView, ListView
 
 from .forms import ProductForm, ProductImageFormSet
@@ -44,25 +42,18 @@ class ProductDetailView(DetailView):
     template_name = 'product/product_details.html'
 
 
-def all_products(request):
-    products = Product.objects.all()
-    products_amount = products.count()
+class ProductsDisplayAllView(ListView):
+    model = Product
+    template_name = 'product/all_products.html'
+    paginate_by = ITEMS_PER_PAGE
 
-    paginator = Paginator(products, ITEMS_PER_PAGE)
-
-    page_number = request.GET.get('page')
-    page = paginator.get_page(page_number)
-
-    return render(
-        request,
-        'product/all_products.html',
-        {
-            'products': products,
-            'products_amount': products_amount,
-            'page_object': page,
-            'paginator': paginator,
+    def get_context_data(self, **kwargs):
+        user_products = self.get_queryset()
+        context = {
+            'products_amount': user_products.count(),
         }
-    )
+        kwargs.update(context)
+        return super().get_context_data(**kwargs)
 
 
 class UserProductsView(ListView):
