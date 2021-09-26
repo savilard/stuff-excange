@@ -13,6 +13,7 @@ class ProductAddView(CreateView):
 
     def get_context_data(self, **kwargs):
         context = super(ProductAddView, self).get_context_data(**kwargs)
+        context['user_username'] = self.request.user.username
         if self.request.POST:
             context['images'] = ProductImageFormSet(self.request.POST, self.request.FILES)
         else:

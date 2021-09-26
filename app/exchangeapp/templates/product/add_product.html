@@ -1,27 +1,221 @@
-{% extends "base.html" %}
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+
+  <title>Stuff exchange</title>
+
+  <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport'/>
+  <meta name="viewport" content="width=device-width"/>
+
+  <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet"/>
+  <link href="{% static 'css/gsdk.css' %}" rel="stylesheet"/>
+  <link href="{% static 'css/examples.css' %}" rel="stylesheet"/>
+
+  <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href='https://fonts.googleapis.com/css?family=Grand+Hotel|Open+Sans:400,300' rel='stylesheet' type='text/css'>
+  <link href="{% static 'css/pe-icon-7-stroke.css' %}" rel="stylesheet"/>
+</head>
+
+<body class="contact-us">
 {% load crispy_forms_tags %}
 
-{% block content %}
+<nav class="navbar navbar-transparent" role="navigation">
   <div class="container">
-    <form enctype="multipart/form-data" method="post">
-      {% csrf_token %}
-      {{ form|crispy }}
-      {% if images %}
-        {{ images.management_form|crispy }}
-        <div id="product_image_formset">
-          {% for form in images.forms %}
-            {{ form.non_field_errors }}
-            {{ form.errors }}
-            {{ form.id }}
-            <table class="no_error">
-              {{ form|crispy }}
-            </table>
-          {% endfor %}
-        </div>
-      {% endif %}
-      <br><br>
-      <input class="btn btn-outline-primary" type="submit" value="Добавить товар">
-      <br><br>
-    </form>
+    <div class="navbar-header">
+      <button id="menu-toggle" type="button" class="navbar-toggle">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar bar1"></span>
+        <span class="icon-bar bar2"></span>
+        <span class="icon-bar bar3"></span>
+      </button>
+    </div>
+
+    <div class="collapse navbar-collapse">
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+          <a href="{% url 'add-product' %}">
+            Хочу обменять
+          </a>
+        </li>
+        <li>
+          <a href="{% url 'display-all-products' %}">
+            Хотят обменять
+          </a>
+        </li>
+        {% if user.is_authenticated %}
+          <li class="dropdown">
+            <a href="#" class="btn btn-round btn-default" data-toggle="dropdown">
+              {{ user_username }}
+              <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu dropdown-with-icons">
+              <li>
+                <a href="{% url 'account_logout' %}">
+                  <i></i> Выход
+                </a>
+              </li>
+            </ul>
+          </li>
+        {% else %}
+          <li class="dropdown">
+            <a href="#" class="btn btn-round btn-default" data-toggle="dropdown">
+              Гость
+              <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu dropdown-with-icons">
+              <li>
+                <a href="{% url 'account_login' %}">
+                  <i></i> Вход
+                </a>
+              </li>
+              <li>
+                <a href="{% url 'account_signup' %}">
+                  <i></i> Регистрация
+                </a>
+              </li>
+
+            </ul>
+          </li>
+
+        {% endif %}
+
+      </ul>
+
+    </div>
+
   </div>
-{% endblock %}
+</nav>
+
+<div class="wrapper">
+  <div class="section">
+    <div class="container">
+      <h2 class="section-title">Добавить товар</h2>
+      <div class="row">
+        <div class="col-md-6">
+          <p>
+            Чем товар подробней опишете, тем быстрей им человек заинтересуется! (c) Мастер Йода<br><br>
+          </p>
+          <form enctype="multipart/form-data" method="post">
+            {% csrf_token %}
+            {{ form|crispy }}
+            {% if images %}
+              {{ images.management_form|crispy }}
+              <div id="product_image_formset">
+                {% for form in images.forms %}
+                  {{ form.non_field_errors }}
+                  {{ form.errors }}
+                  {{ form.id }}
+                  <table class="no_error">
+                    {{ form|crispy }}
+                  </table>
+                {% endfor %}
+              </div>
+            {% endif %}
+            <br><br>
+            <button href="#fakelink" class="btn btn-block btn-lg btn-fill btn-info">Добавить товар</button>
+            <br><br>
+          </form>
+        </div>
+        <div class="col-md-4 col-md-offset-2">
+          <div class="contact-info">
+            <h5><i class="fa fa-building text-muted"></i> Совет 1</h5>
+            <p class="text-muted"> Faucibus A Fusce Mauris Porttitor Elit metus! Orci imperdiet; Molestie Ligula
+              Pharetra
+              dolor; Ligula Ullamcorper Mauris Eget Ut Amet A nibh; Scelerisque Eget Odio Malesuada Amet Integer
+              Phasellus aliquam! Amet imperdiet
+            </p><br>
+            <h5><i class="fa fa-building text-muted"></i> Совет 2</h5>
+            <p class="text-muted">Faucibus A Fusce Mauris Porttitor Elit metus! Orci imperdiet; Molestie Ligula Pharetra
+              dolor; Ligula Ullamcorper Mauris Eget Ut Amet A nibh; Scelerisque Eget Odio Malesuada Amet Integer
+              Phasellus aliquam! Amet imperdiet
+            </p><br>
+            <h5><i class="fa fa-building text-muted"></i> Совет 3</h5>
+            <p class="text-muted">Faucibus A Fusce Mauris Porttitor Elit metus! Orci imperdiet; Molestie Ligula Pharetra
+              dolor; Ligula Ullamcorper Mauris Eget Ut Amet A nibh; Scelerisque Eget Odio Malesuada Amet Integer
+              Phasellus aliquam! Amet imperdiet
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <footer class="footer footer-big footer-black">
+      <div class="container">
+        <div class="social-area text-center">
+          <h5>Мы в соцсетях</h5>
+          <a href="#" class="btn btn-social btn-round">
+            <i class="fa fa-facebook"></i>
+          </a>
+          <a href="#" class="btn btn-social btn-round">
+            <i class="fa fa-twitter"></i>
+          </a>
+        </div>
+        <div class="copyright">
+          &copy; 2021
+        </div>
+      </div>
+    </footer>
+
+  </div>
+
+  <script src="{% static 'js/jquery.js' %}" type="text/javascript"></script>
+  <script src="{% static 'js/jquery-ui.custom.min.js' %}" type="text/javascript"></script>
+  <script src="{% static 'js/bootstrap.min.js' %}" type="text/javascript"></script>
+
+  <script src="{% static 'js/gsdk-checkbox.js' %}"></script>
+  <script src="{% static 'js/gsdk-morphing.js' %}"></script>
+  <script src="{% static 'js/gsdk-radio.js' %}"></script>
+  <script src="{% static 'js/gsdk-bootstrapswitch.js' %}"></script>
+  <script src="{% static 'js/bootstrap-select.js' %}"></script>
+  <script src="{% static 'js/bootstrap-datepicker.js' %}"></script>
+  <script src="{% static 'js/chartist.min.js' %}"></script>
+  <script src="{% static 'js/jquery.tagsinput.js' %}"></script>
+  <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js"></script>
+
+  <script src="{% static 'js/get-shit-done.js' %}"></script>
+
+  <script type="text/javascript">
+    var big_image;
+    var transparent = true;
+
+    $().ready(function () {
+      responsive = $(window).width();
+
+      $(window).on('scroll', checkScroll);
+
+      if (responsive >= 768) {
+        big_image = $('.parallax-image').find('img');
+
+        $(window).on('scroll', function () {
+          parallax();
+          checkScroll();
+        });
+      }
+
+    });
+
+    function checkScroll() {
+      if ($(document).scrollTop() > 260) {
+        if (transparent) {
+          transparent = false;
+          $('nav[role="navigation"]').removeClass('navbar-transparent').addClass('navbar-default');
+        }
+      } else {
+        if (!transparent) {
+          transparent = true;
+          $('nav[role="navigation"]').addClass('navbar-transparent').removeClass('navbar-default');
+        }
+      }
+    }
+
+    var parallax = function () {
+      var current_scroll = $(this).scrollTop();
+
+      oVal = ($(window).scrollTop() / 3);
+      big_image.css('top', oVal);
+    };
+
+  </script>
+</body>
+</html>
