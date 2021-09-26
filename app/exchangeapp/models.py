@@ -4,7 +4,7 @@ from django.urls import reverse
 from django.utils import timezone
 from django.utils.crypto import get_random_string
 from django.utils.text import slugify
-from django.contrib.auth.models import User
+
 
 
 class ProductCategory(models.Model):
@@ -20,7 +20,7 @@ class ProductCategory(models.Model):
 
 class Product(models.Model):
     owner = models.ForeignKey(
-        User,
+        settings.AUTH_USER_MODEL,
         verbose_name='Владелец',
         related_name='products',
         on_delete=models.CASCADE,
