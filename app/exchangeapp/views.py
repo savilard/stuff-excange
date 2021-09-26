@@ -41,6 +41,13 @@ class ProductDetailView(DetailView):
     model = Product
     template_name = 'product/product_details.html'
 
+    def get_context_data(self, **kwargs):
+        context = {
+            'user_username': self.request.user.username,
+        }
+        kwargs.update(context)
+        return super().get_context_data(**kwargs)
+
 
 class ProductsDisplayAllView(ListView):
     model = Product
@@ -51,6 +58,7 @@ class ProductsDisplayAllView(ListView):
         user_products = self.get_queryset()
         context = {
             'products_amount': user_products.count(),
+            'user_username': self.request.user.username,
         }
         kwargs.update(context)
         return super().get_context_data(**kwargs)
@@ -66,6 +74,8 @@ class UserProductsView(ListView):
         context = {
             'products_amount': user_products.count(),
             'owner_username': self.kwargs['username'],
+            'user_username': self.request.user.username,
+
         }
         kwargs.update(context)
         return super().get_context_data(**kwargs)
