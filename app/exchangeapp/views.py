@@ -1,6 +1,6 @@
 from django.core.paginator import Paginator
 from django.shortcuts import render
-from django.views.generic import CreateView, DetailView
+from django.views.generic import CreateView, DetailView, ListView
 
 from .forms import ProductForm, ProductImageFormSet
 from .models import Product
@@ -63,3 +63,21 @@ def all_products(request):
             'paginator': paginator,
         }
     )
+
+
+class UserProductsView(ListView):
+    model = Product
+    template_name = 'product/user_products.html'
+    paginate_by = ITEMS_PER_PAGE
+
+    def get_context_data(self, **kwargs):
+        user_products = self.get_queryset()
+        context = {
+            'products_amount': user_products.count(),
+            'owner_username': self.kwargs['username'],
+        }
+        kwargs.update(context)
+        return super().get_context_data(**kwargs)
+
+    def get_queryset(self):
+        return super(UserProductsView, self).get_queryset().filter(owner__username=self.kwargs['username'])
