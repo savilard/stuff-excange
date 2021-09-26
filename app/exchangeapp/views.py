@@ -24,10 +24,16 @@ class ProductAddView(CreateView):
     def form_valid(self, form):
         context = self.get_context_data()
         images = context['images']
+
+        product_instance = form.save(commit=False)
+        product_instance.owner = self.request.user
+        product_instance.save()
+
         if images.is_valid():
-            self.object = form.save()
-            images.instance = self.object
+            product_instance = form.save()
+            images.instance = product_instance
             images.save()
+
         else:
             return self.form_invalid(form)
         return super(ProductAddView, self).form_valid(form)
