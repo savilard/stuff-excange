@@ -1,8 +1,10 @@
+from django.conf import settings
 from django.db import models
 from django.urls import reverse
 from django.utils import timezone
 from django.utils.crypto import get_random_string
 from django.utils.text import slugify
+from django.contrib.auth.models import User
 
 
 class ProductCategory(models.Model):
@@ -17,6 +19,13 @@ class ProductCategory(models.Model):
 
 
 class Product(models.Model):
+    owner = models.ForeignKey(
+        User,
+        verbose_name='Владелец',
+        related_name='products',
+        on_delete=models.CASCADE,
+        default="",
+    )
     title = models.CharField(verbose_name='Название', max_length=50, db_index=True)
     slug = models.SlugField(verbose_name='Product slug', max_length=100, unique=True)
     description = models.TextField(verbose_name='Описание', max_length=500)

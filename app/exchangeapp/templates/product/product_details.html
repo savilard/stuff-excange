@@ -148,7 +148,9 @@
               <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
                 <div class="panel-body">
                   <ul style="padding-left: 20px;">
-                    <li style="list-style-position: outside;"> Email</li>
+                    {% if object.owner.email %}
+                      <li style="list-style-position: outside;"> Email: {{ object.owner.email }}</li>
+                    {% endif %}
                     <li style="list-style-position: outside;"> Номер телефона</li>
                   </ul>
                 </div>
