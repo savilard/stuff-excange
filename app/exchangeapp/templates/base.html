@@ -27,6 +27,12 @@
         <li><a href="#" target="_blank" class="nav-link px-2">Хочу обменять</a></li>
         <li><a href="#" target="_blank" class="nav-link px-2">Хотят обменять</a></li>
         <li><a href="#" target="_blank" class="nav-link px-2">Предложения обмена</a></li>
+        {% if user.is_authenticated %}
+          <li><a href="{% url 'account_logout' %}" target="_blank" class="nav-link px-2">Выход</a></li>
+        {% else %}
+          <li><a href="{% url 'account_login' %}" target="_blank" class="nav-link px-2">Вход</a></li>
+          <li><a href="{% url 'account_signup' %}" target="_blank" class="nav-link px-2">Регистрация</a></li>
+        {% endif %}
       </ul>
     </div>
   </div>
