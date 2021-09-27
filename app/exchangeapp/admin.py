@@ -1,5 +1,4 @@
 from django.contrib import admin, messages
-from django.contrib.admin.decorators import action
 from django.utils.translation import ngettext
 from django.utils.html import format_html
 
@@ -14,8 +13,18 @@ from .models import ProductImage
 class ProductResource(resources.ModelResource):
     class Meta:
         model = Product
-        fields = ('id', 'title', 'category__title', 'created_at')
-
+        fields = (
+            'id', 
+            'title',
+            'description',
+            'category__title', 
+            'created_at', 
+            'owner__username', 
+            'owner__email',
+            'owner__phonenumber',
+            'owner__vk_link',
+            'owner__telegram_link',
+        )
 
 class ProductImageInline(admin.TabularInline):
     model = ProductImage
