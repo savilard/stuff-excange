@@ -1,0 +1,60 @@
+{% load static %}
+<!doctype html>
+<html lang="ru">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+  <!-- Bootstrap icons-->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+  <title>Stuff Exchange</title>
+</head>
+
+<body>
+  <div class="container">
+    <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+      <div class="logo_container">
+        <div class="logo">
+          <a class="navbar-brand" href="#">
+            <img src="{% static 'img/site-icon.jpg' %}" width="30" height="30" alt="Website icon" />
+          </a>
+        </div>
+      </div>
+      <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+        <li><a href="#" target="_blank" class="nav-link px-2">Хочу обменять</a></li>
+        <li><a href="#" target="_blank" class="nav-link px-2">Хотят обменять</a></li>
+        <li><a href="#" target="_blank" class="nav-link px-2">Предложения обмена</a></li>
+        {% if user.is_authenticated %}
+          <li><a href="{% url 'account_logout' %}" target="_blank" class="nav-link px-2">Выход</a></li>
+        {% else %}
+          <li><a href="{% url 'account_login' %}" target="_blank" class="nav-link px-2">Вход</a></li>
+          <li><a href="{% url 'account_signup' %}" target="_blank" class="nav-link px-2">Регистрация</a></li>
+        {% endif %}
+      </ul>
+    </div>
+  </div>
+  <div class="container">
+    <main>
+      {% block content %}
+      {% endblock %}
+    </main>
+  </div>
+  <!-- Footer -->
+  <footer class="footer mt-auto py-3 bg-secondary">
+    <div class="container">
+      <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+        <li><a href="#" class="nav-link px-2">О проекте</a></li>
+        <li><a href="#" class="nav-link px-2">Написать нам</a></li>
+        <li><a href="#" class="nav-link px-2">Мобильная версия</a></li>
+        <li><a href="#" class="nav-link px-2">Правила размещения объявлений</a></li>
+      </ul>
+    </div>
+  </footer>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js" integrity="sha384-W8fXfP3gkOKtndU4JGtKDvXbO53Wy8SZCQHczT5FMiiqmQfUpWbYdTil/SxwZgAN" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.min.js" integrity="sha384-skAcpIdS7UcVUC05LJ9Dxay8AXcDYfBJqt1CJ85S/CFujBsIzCIv+l9liuYLaMQ/" crossorigin="anonymous"></script>
+</body>
+
+</html>
