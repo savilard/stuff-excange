@@ -1,0 +1,29 @@
+<div class="modal modal-small fade" id="loginModal" tabindex="-1" role="dialog" aria-hidden="false">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title text-center">Вход</h4>
+      </div>
+      <div class="modal-body">
+        <form action="{% url 'account_login' %}" method="post">
+          {% csrf_token %}
+          <input type="hidden" name="next" value="{{ request.get_full_path }}" />
+          <div class="form-group">
+            <input id="id_login" name="login" type="text" value="" placeholder="Имя пользователя" class="form-control" />
+          </div>
+          <div class="form-group">
+            <input id="id_password" name="password" type="password" value="" placeholder="Password" class="form-control" />
+          </div>
+          <label class="checkbox" for="id_remember">
+            <input type="checkbox" value="" id="id_remember" data-toggle="checkbox">
+            Запомнить
+          </label>
+          <button type="submit" class="btn btn-info btn-fill btn-block"> Login</button>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <span class="text-muted">Нет аккаунта? <a href="#">Зарегистрируй!</a></span>
+      </div>
+    </div>
+  </div>
+</div>
