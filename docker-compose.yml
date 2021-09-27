@@ -3,10 +3,11 @@ version: '3.8'
 services:
   web:
     build: ./app
-    ports:
-      - "8000:8000"
+    expose:
+      - 8000
     volumes:
-      - ./app/:/usr/src/app/
+      - static_volume:/home/app/web/staticfiles
+      - media_volume:/home/app/web/mediafiles
     command: >
       sh -c "python manage.py wait_for_db &&
              python manage.py migrate &&
@@ -15,6 +16,16 @@ services:
       - ./.env
     depends_on:
       - db
+
+  nginx:
+    build: ./nginx
+    volumes:
+      - static_volume:/home/app/web/staticfiles
+      - media_volume:/home/app/web/mediafiles
+    ports:
+      - 1337:80
+    depends_on:
+      - web
 
   db:
     image: postgres:13.0-alpine
@@ -25,3 +36,5 @@ services:
 
 volumes:
   postgres_data:
+  static_volume:
+  media_volume:
