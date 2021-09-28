@@ -7,12 +7,13 @@
       <div class="modal-body">
         <form action="{% url 'account_login' %}" method="post">
           {% csrf_token %}
-          <input type="hidden" name="next" value="{{ request.get_full_path }}" />
+          <input type="hidden" name="next" value="{{ request.get_full_path }}"/>
           <div class="form-group">
-            <input id="id_login" name="login" type="text" value="" placeholder="Имя пользователя" class="form-control" />
+            <input id="id_login" name="login" type="text" value="" placeholder="Имя пользователя" class="form-control"/>
           </div>
           <div class="form-group">
-            <input id="id_password" name="password" type="password" value="" placeholder="Password" class="form-control" />
+            <input id="id_password" name="password" type="password" value="" placeholder="Password"
+                   class="form-control"/>
           </div>
           <label class="checkbox" for="id_remember">
             <input type="checkbox" value="" id="id_remember" data-toggle="checkbox">
@@ -27,3 +28,61 @@
     </div>
   </div>
 </div>
+
+<!-- Modal Register-->
+<div class="modal modal-small fade" id="registerModal" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title text-center">Регистрация</h4>
+      </div>
+      <div class="modal-body">
+        <form class="signup" id="signup_form" method="post" action="{% url 'account_signup' %}">
+          {% csrf_token %}
+          <div class="form-group">
+            <label for="id_username">Имя пользователя</label>
+            <input type="text" name="username" class="form-control" id="name" placeholder="Имя пользователя"
+                   autocomplete="username" minlength="1" maxlength="50" required id="id_username"/>
+          </div>
+          <div class="form-group">
+            <label for="phone">Phone</label>
+            <input type="text" name="phonenumber" class="form-control" id="phone" required id="id_phonenumber"
+                   placeholder="Phone number"/>
+          </div>
+          <div class="form-group">
+            <label for="id_email">Email (опционально)</label>
+            <input type="email" name="email" class="form-control" id="email"
+                   placeholder="Ваш персональный email адрес" autocomplete="email" id="id_email"/>
+          </div>
+          <div class="form-group">
+            <label for="id_vk_link">Ссылка на аккаунт ВК (опционально)</label>
+            <input type="text" name="vk_link" class="form-control" placeholder="https://vk.com/durov">
+          </div>
+          <div class="form-group">
+            <label for="id_telegram_link">Ссылка на аккаунт Telegram (опционально)</label>
+            <input type="text" name="telegram_link" class="form-control" placeholder="http://t.me/durov">
+          </div>
+          <div class="form-group">
+            <label for="id_password1">Пароль:</label>
+            <input type="password" name="password1" placeholder="Пароль" autocomplete="new-password" required
+                   id="id_password1" class="form-control">
+          </div>
+          <div class="form-group">
+            <label for="id_password2">Пароль (еще раз):</label>
+            <input type="password" name="password2" placeholder="Пароль (еще раз)" required id="id_password2"
+                   class="form-control">
+          </div>
+          {% if redirect_field_value %}
+            <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}"/>
+          {% endif %}
+          <button type="submit" class="btn btn-info btn-fill btn-block"> Создать аккаунт</button>
+
+        </form>
+        <div class="modal-footer">
+          <span class="text-muted">Looking <a href="#">to login</a> ?</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!--    end modal -->

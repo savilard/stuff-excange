@@ -134,3 +134,4 @@ poetry.lock
 .env.*
 app/media
 app/staticfiles
+app/mediafiles

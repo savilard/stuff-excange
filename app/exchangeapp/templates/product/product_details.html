@@ -182,7 +182,15 @@
                     {% if object.owner.email %}
                       <li style="list-style-position: outside;"> Email: {{ object.owner.email }}</li>
                     {% endif %}
-                    <li style="list-style-position: outside;"> Номер телефона</li>
+                    {% if object.owner.phonenumber %}
+                      <li style="list-style-position: outside;"> Номер телефона: {{ object.owner.phonenumber }}</li>
+                    {% endif %}
+                    {% if object.owner.vk_link %}
+                      <li style="list-style-position: outside;"> ВК: {{ object.owner.vk_link }}</li>
+                    {% endif %}
+                    {% if object.owner.telegram_link %}
+                      <li style="list-style-position: outside;"> Telegram: {{ object.owner.telegram_link }}</li>
+                    {% endif %}
                   </ul>
                 </div>
               </div>
