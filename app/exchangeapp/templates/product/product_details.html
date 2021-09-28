@@ -179,11 +179,15 @@
               <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
                 <div class="panel-body">
                   <ul style="padding-left: 20px;">
-                    {% if object.owner.email %}
-                      <li style="list-style-position: outside;"> Email: {{ object.owner.email }}</li>
+                    {% if object.owner.city %}
+                      <li style="list-style-position: outside;"> Город: {{ object.owner.city }}</li>
                     {% endif %}
+
                     {% if object.owner.phonenumber %}
                       <li style="list-style-position: outside;"> Номер телефона: {{ object.owner.phonenumber }}</li>
+                    {% endif %}
+                    {% if object.owner.email %}
+                      <li style="list-style-position: outside;"> Email: {{ object.owner.email }}</li>
                     {% endif %}
                     {% if object.owner.vk_link %}
                       <li style="list-style-position: outside;"> ВК: {{ object.owner.vk_link }}</li>
