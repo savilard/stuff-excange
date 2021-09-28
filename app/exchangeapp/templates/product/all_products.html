@@ -1,9 +1,10 @@
 {% load static %}
-
 {% include 'inlines/head.html' %}
 
 <body class="ecommerce">
-  {% include 'inlines/navbar.html' %}
+  <nav class="navbar navbar-transparent navbar-fixed-top" role="navigation">
+    {% include 'inlines/navbar.html' %}
+  </nav>
   <div class="wrapper">
     <div class="parallax filter-black">
       <div class="parallax-image">
@@ -49,4 +50,5 @@
   {% include 'inlines/modal.html' %}
   {% include 'inlines/scripts.html' %}
 </body>
+
 </html>
