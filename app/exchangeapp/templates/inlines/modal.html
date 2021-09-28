@@ -72,9 +72,6 @@
             <input type="password" name="password2" placeholder="Пароль (еще раз)" required id="id_password2"
                    class="form-control">
           </div>
-          {% if redirect_field_value %}
-            <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}"/>
-          {% endif %}
           <button type="submit" class="btn btn-info btn-fill btn-block"> Создать аккаунт</button>
 
         </form>
@@ -84,5 +81,5 @@
       </div>
     </div>
   </div>
-
-  <!--    end modal -->
+</div>
+<!--    end modal -->

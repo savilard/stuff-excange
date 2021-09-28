@@ -91,166 +91,90 @@
 <div class="wrapper">
   <div class="section">
     <div class="container">
-      <h2 class="section-title">Добавить товар</h2>
-      <div class="row">
+      {% if user.is_authenticated %}
+        <h2 class="section-title">Добавить товар</h2>
+        <div class="row">
         <div class="col-md-6">
-          <p>
-            Чем товар подробней опишете, тем быстрей им человек заинтересуется! (c) Мастер Йода<br><br>
-          </p>
-          <form enctype="multipart/form-data" method="post">
-            {% csrf_token %}
-            {{ form|crispy }}
-            {% if images %}
-              {{ images.management_form|crispy }}
-              <div id="product_image_formset">
-                {% for form in images.forms %}
-                  {{ form.non_field_errors }}
-                  {{ form.errors }}
-                  {{ form.id }}
-                  <table class="no_error">
-                    {{ form|crispy }}
-                  </table>
-                {% endfor %}
-              </div>
-            {% endif %}
-            <br><br>
-            <button href="#fakelink" class="btn btn-block btn-lg btn-fill btn-info">Добавить товар</button>
-            <br><br>
-          </form>
+        <p>
+          Чем товар подробней опишете, тем быстрей им человек заинтересуется! (c) Мастер Йода<br><br>
+        </p>
+        <form enctype="multipart/form-data" method="post">
+          {% csrf_token %}
+          {{ form|crispy }}
+          {% if images %}
+            {{ images.management_form|crispy }}
+            <div id="product_image_formset">
+              {% for form in images.forms %}
+                {{ form.non_field_errors }}
+                {{ form.errors }}
+                {{ form.id }}
+                <table class="no_error">
+                  {{ form|crispy }}
+                </table>
+              {% endfor %}
+            </div>
+          {% endif %}
+          <br><br>
+          <button href="#fakelink" class="btn btn-block btn-lg btn-fill btn-info">Добавить товар</button>
+          <br><br>
+        </form>
+      {% else %}
+        <h2 class="section-title">Внимание!</h2>
+        <div class="row">
+        <div class="col-md-6">
+        <p>
+          Для добавления товара войдите под своим аккаунтом или создайте новый<br><br>
+        </p>
+        <div class="social-area text-center">
+          <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#loginModal">Вход</button>
+          <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#registerModal">Регистрация</button>
         </div>
-        <div class="col-md-4 col-md-offset-2">
-          <div class="contact-info">
-            <h5><i class="fa fa-building text-muted"></i> Совет 1</h5>
-            <p class="text-muted"> Faucibus A Fusce Mauris Porttitor Elit metus! Orci imperdiet; Molestie Ligula
-              Pharetra
-              dolor; Ligula Ullamcorper Mauris Eget Ut Amet A nibh; Scelerisque Eget Odio Malesuada Amet Integer
-              Phasellus aliquam! Amet imperdiet
-            </p><br>
-            <h5><i class="fa fa-building text-muted"></i> Совет 2</h5>
-            <p class="text-muted">Faucibus A Fusce Mauris Porttitor Elit metus! Orci imperdiet; Molestie Ligula Pharetra
-              dolor; Ligula Ullamcorper Mauris Eget Ut Amet A nibh; Scelerisque Eget Odio Malesuada Amet Integer
-              Phasellus aliquam! Amet imperdiet
-            </p><br>
-            <h5><i class="fa fa-building text-muted"></i> Совет 3</h5>
-            <p class="text-muted">Faucibus A Fusce Mauris Porttitor Elit metus! Orci imperdiet; Molestie Ligula Pharetra
-              dolor; Ligula Ullamcorper Mauris Eget Ut Amet A nibh; Scelerisque Eget Odio Malesuada Amet Integer
-              Phasellus aliquam! Amet imperdiet
-            </p>
+
+      {% endif %}
+
+      </div>
+      <div class="col-md-4 col-md-offset-2">
+        <div class="contact-info">
+          <h5><i class="fa fa-building text-muted"></i> Совет 1</h5>
+          <p class="text-muted"> Faucibus A Fusce Mauris Porttitor Elit metus! Orci imperdiet; Molestie Ligula
+            Pharetra
+            dolor; Ligula Ullamcorper Mauris Eget Ut Amet A nibh; Scelerisque Eget Odio Malesuada Amet Integer
+            Phasellus aliquam! Amet imperdiet
+          </p><br>
+          <h5><i class="fa fa-building text-muted"></i> Совет 2</h5>
+          <p class="text-muted">Faucibus A Fusce Mauris Porttitor Elit metus! Orci imperdiet; Molestie Ligula Pharetra
+            dolor; Ligula Ullamcorper Mauris Eget Ut Amet A nibh; Scelerisque Eget Odio Malesuada Amet Integer
+            Phasellus aliquam! Amet imperdiet
+          </p><br>
+          <h5><i class="fa fa-building text-muted"></i> Совет 3</h5>
+          <p class="text-muted">Faucibus A Fusce Mauris Porttitor Elit metus! Orci imperdiet; Molestie Ligula Pharetra
+            dolor; Ligula Ullamcorper Mauris Eget Ut Amet A nibh; Scelerisque Eget Odio Malesuada Amet Integer
+            Phasellus aliquam! Amet imperdiet
+          </p>
+        </div>
+      </div>
+      </div>
+      </div>
+      <footer class="footer footer-big footer-black">
+        <div class="container">
+          <div class="social-area text-center">
+            <h5>Мы в соцсетях</h5>
+            <a href="#" class="btn btn-social btn-round">
+              <i class="fa fa-facebook"></i>
+            </a>
+            <a href="#" class="btn btn-social btn-round">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </div>
+          <div class="copyright">
+            &copy; 2021
           </div>
         </div>
+      </footer>
+
       </div>
-    </div>
-    <footer class="footer footer-big footer-black">
-      <div class="container">
-        <div class="social-area text-center">
-          <h5>Мы в соцсетях</h5>
-          <a href="#" class="btn btn-social btn-round">
-            <i class="fa fa-facebook"></i>
-          </a>
-          <a href="#" class="btn btn-social btn-round">
-            <i class="fa fa-twitter"></i>
-          </a>
-        </div>
-        <div class="copyright">
-          &copy; 2021
-        </div>
-      </div>
-    </footer>
 
-  </div>
-
-  <!-- Modal login -->
-  <div class="modal modal-small fade" id="loginModal" tabindex="-1" role="dialog" aria-hidden="false">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h4 class="modal-title text-center">Вход</h4>
-        </div>
-        <div class="modal-body">
-          <form action="{% url 'account_login' %}" method="post">
-            {% csrf_token %}
-            <input type="hidden" name="next" value="{{ request.get_full_path }}"/>
-            <div class="form-group">
-              <input id="id_login" name="login" type="text" value="" placeholder="Имя пользователя"
-                     class="form-control"/>
-            </div>
-            <div class="form-group">
-              <input id="id_password" name="password" type="password" value="" placeholder="Password"
-                     class="form-control"/>
-            </div>
-            <label class="checkbox" for="id_remember">
-              <input type="checkbox" value="" id="id_remember" data-toggle="checkbox">
-              Запомнить
-            </label>
-            <button type="submit" class="btn btn-info btn-fill btn-block"> Login</button>
-          </form>
-        </div>
-        <div class="modal-footer">
-          <span class="text-muted">Нет аккаунта? <a href="#">Зарегистрируй!</a></span>
-        </div>
-      </div>
-    </div>
-  </div>
-
-
-  <script src="{% static 'js/jquery.js' %}" type="text/javascript"></script>
-  <script src="{% static 'js/jquery-ui.custom.min.js' %}" type="text/javascript"></script>
-  <script src="{% static 'js/bootstrap.min.js' %}" type="text/javascript"></script>
-
-  <script src="{% static 'js/gsdk-checkbox.js' %}"></script>
-  <script src="{% static 'js/gsdk-morphing.js' %}"></script>
-  <script src="{% static 'js/gsdk-radio.js' %}"></script>
-  <script src="{% static 'js/gsdk-bootstrapswitch.js' %}"></script>
-  <script src="{% static 'js/bootstrap-select.js' %}"></script>
-  <script src="{% static 'js/bootstrap-datepicker.js' %}"></script>
-  <script src="{% static 'js/chartist.min.js' %}"></script>
-  <script src="{% static 'js/jquery.tagsinput.js' %}"></script>
-  <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js"></script>
-
-  <script src="{% static 'js/get-shit-done.js' %}"></script>
-
-  <script type="text/javascript">
-    var big_image;
-    var transparent = true;
-
-    $().ready(function () {
-      responsive = $(window).width();
-
-      $(window).on('scroll', checkScroll);
-
-      if (responsive >= 768) {
-        big_image = $('.parallax-image').find('img');
-
-        $(window).on('scroll', function () {
-          parallax();
-          checkScroll();
-        });
-      }
-
-    });
-
-    function checkScroll() {
-      if ($(document).scrollTop() > 260) {
-        if (transparent) {
-          transparent = false;
-          $('nav[role="navigation"]').removeClass('navbar-transparent').addClass('navbar-default');
-        }
-      } else {
-        if (!transparent) {
-          transparent = true;
-          $('nav[role="navigation"]').addClass('navbar-transparent').removeClass('navbar-default');
-        }
-      }
-    }
-
-    var parallax = function () {
-      var current_scroll = $(this).scrollTop();
-
-      oVal = ($(window).scrollTop() / 3);
-      big_image.css('top', oVal);
-    };
-
-  </script>
-</div>
+      {% include 'inlines/modal.html' %}
+      {% include 'inlines/scripts.html' %}
 </body>
 </html>
