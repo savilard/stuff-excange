@@ -129,3 +129,7 @@ SITE_ID = 1
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 ACCOUNT_EMAIL_VERIFICATION = 'none'
+
+ACCOUNT_FORMS = {
+    "signup": "user_profile.forms.StuffExchangeSignupForm",
+}
