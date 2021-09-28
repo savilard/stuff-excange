@@ -20,7 +20,7 @@ The person does not need it for some reason, and does not want to sell it, but w
 But, not for nothing, but to get something he needs in return. This project will help organize the exchange of things.
 
 
-## Installation
+## Installation to production server
 
 * Clone github repository:
 ```bash
@@ -30,30 +30,18 @@ git clone https://github.com/savilard/stuff-excange
 ```bash
 cd stuff-excange
 ```
-* Prepare virtual environment:
-```bash
-python -m venv .venv
-source .venv/bin/activate
-```
-* install deps:
-```bash
-pip install -r requirements.txt
-```
 * Create a .env file with the following content:
 ```.env
 SECRET_KEY='django secret key'
-DEBUG=True to dev server
-```
-*Create a SQLite database file and migrate it with the following command:
-```bash
-python manage.py migrate
+DEBUG=False for prod server
+ALLOWED_HOSTS=['ip_of_prod_server']
 ```
 
 ## How to run
 
-Start the server:
+Start the server (administrator rights may be required):
 ```bash
-python app/manage.py runserver
+docker-compose up -d --build
 ```
 
-Open the site in your browser at http://127.0.0.1:8000/.
+Open the site admin at http://ip_of_prod_server:1337/.
