@@ -7,6 +7,7 @@ class CustomUser(AbstractUser):
     """Кастомный пользователь. """
     vk_link = models.CharField('Ссылка на ВКонтакте', max_length=255, blank=True)
     telegram_link = models.CharField('Ссылка на Telegram', max_length=255, blank=True)
+    city = models.CharField('Город', max_length=255, blank=True)
 
     phonenumber = PhoneNumberField('Номер пользователя', max_length=20)
 
